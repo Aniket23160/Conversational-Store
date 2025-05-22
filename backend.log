@@ -1,0 +1,22 @@
+INFO:     Will watch for changes in these directories: ['/Users/aniket/assignment/conversational-store/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [29532] using WatchFiles
+/Users/aniket/assignment/conversational-store/backend/venv/lib/python3.12/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/Users/aniket/assignment/conversational-store/backend/venv/lib/python3.12/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: mps
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO:     Started server process [29535]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:63620 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63622 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63620 - "GET /api/categories HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63620 - "GET /api/categories HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63637 - "OPTIONS /api/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63637 - "POST /api/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63754 - "POST /api/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63849 - "POST /api/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63890 - "POST /api/search HTTP/1.1" 200 OK

@@ -16,8 +16,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # File paths - update these to match your file locations
-CATALOG_FILE = "skincare_catalogue.xlsx"  # Update this path
-ADDITIONAL_INFO_FILE = "additional_info.doc"  # Update this path
+CATALOG_FILE = "skincare_catalog.xlsx"  # Excel file
+ADDITIONAL_INFO_FILE = "Additional_info.docx"  # Word document
 
 def create_data_directory():
     """Create data directory if it doesn't exist"""

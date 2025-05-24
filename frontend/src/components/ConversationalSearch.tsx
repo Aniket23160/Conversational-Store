@@ -31,19 +31,61 @@ export default function ConversationalSearch({
         conversation_history: conversationHistory
       };
 
-      const response = await fetch('http://localhost:8001/api/search', {
+      // Use the API URL directly with http protocol and specific port
+      const apiUrl = 'http://localhost:8001';
+      console.log('Sending search request to:', apiUrl, searchRequest);
+      
+      // Create an AbortController to handle timeouts
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout (increased since backend takes ~30s)
+      
+      // Try using a CORS proxy to avoid cross-origin issues in the browser
+      const corsProxyUrl = window.location.hostname === 'localhost' ? 
+        `${apiUrl}/api/search` : // When running locally, use direct connection
+        `https://corsproxy.io/?${encodeURIComponent(`${apiUrl}/api/search`)}`; // Use CORS proxy in other environments
+        
+      console.log('About to fetch from:', corsProxyUrl);
+      const response = await fetch(corsProxyUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
         },
-        body: JSON.stringify(searchRequest)
+        body: JSON.stringify(searchRequest),
+        signal: controller.signal,
+        mode: 'cors',
+        credentials: 'omit' // Don't send cookies for cross-origin requests
       });
-
+      
+      // Clear the timeout since the request completed
+      clearTimeout(timeoutId);
+      console.log('Fetch complete, status:', response.status);
+      
       if (!response.ok) {
-        throw new Error('Search failed');
+        console.error(`Search failed with status: ${response.status}`);
+        throw new Error(`Search failed with status: ${response.status}`);
       }
-
-      const data: SearchResponse = await response.json();
+      
+      // Try to get the response text first to debug any parsing issues
+      const responseText = await response.text();
+      console.log('Response text length:', responseText.length);
+      if (responseText.length > 100) {
+        console.log('Response text preview:', responseText.substring(0, 100) + '...');
+      } else {
+        console.log('Response text:', responseText);
+      }
+      
+      // Parse the JSON manually
+      let data: SearchResponse;
+      try {
+        data = JSON.parse(responseText) as SearchResponse;
+        console.log('Parsed data successfully');
+      } catch (parseError) {
+        console.error('JSON parse error:', parseError);
+        throw new Error(`Failed to parse response: ${parseError}`);
+      }
       
       // Update conversation history
       const newHistory = [
@@ -64,7 +106,21 @@ export default function ConversationalSearch({
       
     } catch (error) {
       console.error('Search error:', error);
-      // You could add error state handling here
+      // Add error state handling
+      setIsConversationActive(true);
+      setConversationHistory([
+        ...conversationHistory,
+        { role: 'user' as const, content: searchQuery },
+        { role: 'assistant' as const, content: 'Sorry, I had trouble processing your request. Please try again.' }
+      ]);
+      
+      // Show basic error message and no products
+      onSearchResults({
+        response_type: 'results',
+        message: 'Sorry, I had trouble processing your request. Please try again.',
+        products: [],
+        session_id: sessionId
+      });
     } finally {
       setIsLoading(false);
     }
@@ -82,7 +138,7 @@ export default function ConversationalSearch({
     onClear();
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSearch();
@@ -102,13 +158,14 @@ export default function ConversationalSearch({
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             placeholder={isConversationActive 
               ? "Continue the conversation..." 
               : "What skincare products are you looking for? (e.g., 'serums for dry skin', 'something gentle for summer')"
             }
             className="block w-full pl-10 pr-12 py-4 border border-gray-300 rounded-xl text-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
             disabled={isLoading}
+            data-component-name="ConversationalSearch"
           />
           
           <button
@@ -130,7 +187,7 @@ export default function ConversationalSearch({
         {isLoading && (
           <div className="absolute top-full left-0 right-0 mt-2">
             <div className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2" data-component-name="ConversationalSearch">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
                 <span className="text-sm text-gray-600">Finding your perfect products...</span>
               </div>
@@ -196,10 +253,10 @@ export default function ConversationalSearch({
               "something gentle for summer"
             </button>
             <button
-              onClick={() => handleSearch("moisturizer for dry skin")}
+              onClick={() => handleSearch("anti-aging products")}
               className="px-3 py-2 text-sm bg-white border border-gray-200 rounded-full hover:border-blue-300 hover:text-blue-600 transition-colors"
             >
-              "moisturizer for dry skin"
+              "anti-aging products"
             </button>
           </div>
         </div>

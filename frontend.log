@@ -6,14 +6,16 @@
    - Local:        http://localhost:3000
    - Environments: .env.local
 
- ✓ Ready in 1464ms
+ ✓ Ready in 2.3s
  ○ Compiling /_error ...
- ✓ Compiled /_error in 630ms (204 modules)
+ ✓ Compiled /_error in 983ms (204 modules)
  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- ✓ Compiled in 70ms (155 modules)
- ✓ Compiled / in 103ms (264 modules)
+ ✓ Compiled in 89ms (204 modules)
  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-(node:29564) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+ ✓ Compiled / in 194ms (264 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+(node:60016) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
 Failed to proxy https://via.placeholder.com/300/300 Error: getaddrinfo ENOTFOUND via.placeholder.com
     at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
@@ -71,17 +73,4 @@ Error: getaddrinfo ENOTFOUND via.placeholder.com
   syscall: 'getaddrinfo',
   hostname: 'via.placeholder.com'
 }
-Failed to proxy https://via.placeholder.com/300/300 Error: getaddrinfo ENOTFOUND via.placeholder.com
-    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
-  errno: -3008,
-  code: 'ENOTFOUND',
-  syscall: 'getaddrinfo',
-  hostname: 'via.placeholder.com'
-}
-Error: getaddrinfo ENOTFOUND via.placeholder.com
-    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
-  errno: -3008,
-  code: 'ENOTFOUND',
-  syscall: 'getaddrinfo',
-  hostname: 'via.placeholder.com'
-}
+[?25h

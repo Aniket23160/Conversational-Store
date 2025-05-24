@@ -1,4 +1,4 @@
-import '/Users/aniket/assignment/conversational-store/frontend/src/styles/global.css'
+import '../styles/global.css'
 import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {

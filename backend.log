@@ -1,6 +1,6 @@
-INFO:     Will watch for changes in these directories: ['/Users/aniket/assignment/conversational-store/backend']
+INFO:     Will watch for changes in these directories: ['/Users/aniket/Documents/conversational-store/backend']
 INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
-INFO:     Started reloader process [29532] using WatchFiles
+INFO:     Started reloader process [59968] using WatchFiles
 /Users/aniket/assignment/conversational-store/backend/venv/lib/python3.12/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
   _torch_pytree._register_pytree_node(
 /Users/aniket/assignment/conversational-store/backend/venv/lib/python3.12/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
@@ -8,15 +8,44 @@ INFO:     Started reloader process [29532] using WatchFiles
 INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: mps
 INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: all-MiniLM-L6-v2
 INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
-INFO:     Started server process [29535]
+INFO:     Started server process [59971]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     127.0.0.1:63620 - "GET /api/products HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63622 - "GET /api/products HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63620 - "GET /api/categories HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63620 - "GET /api/categories HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63637 - "OPTIONS /api/search HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63637 - "POST /api/search HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63754 - "POST /api/search HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63849 - "POST /api/search HTTP/1.1" 200 OK
-INFO:     127.0.0.1:63890 - "POST /api/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61858 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61860 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61860 - "GET /api/categories HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61858 - "GET /api/categories HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61875 - "OPTIONS /api/search HTTP/1.1" 200 OK
+INFO:main:Received search request - Query: 'serums for acne-prone skin', Session ID: 067ae169-b524-45e2-9f4a-7899de8b0baf
+INFO:main:Conversation history length: 0
+ERROR:main:Ollama API error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=100)
+INFO:main:Search response generated - Found 12 products
+INFO:main:Response message: 'Great choice! I found 10 products across Face Mask, Toner, Cream / Moisturizer and Serum for you to ...'
+INFO:     127.0.0.1:61875 - "POST /api/search HTTP/1.1" 200 OK
+INFO:main:Received search request - Query: 'serum', Session ID: 067ae169-b524-45e2-9f4a-7899de8b0baf
+INFO:main:Conversation history length: 2
+ERROR:main:Ollama API error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=100)
+INFO:main:Search response generated - Found 10 products
+INFO:main:Response message: 'Great choice! I found 10 these Serum products for you to explore....'
+INFO:     127.0.0.1:61997 - "POST /api/search HTTP/1.1" 200 OK
+INFO:main:Received search request - Query: 'serum', Session ID: 067ae169-b524-45e2-9f4a-7899de8b0baf
+INFO:main:Conversation history length: 4
+ERROR:main:Ollama API error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=100)
+INFO:main:Search response generated - Found 10 products
+INFO:main:Response message: 'Great choice! I found 10 these Serum products for you to explore....'
+INFO:     127.0.0.1:62126 - "POST /api/search HTTP/1.1" 200 OK
+INFO:main:Received search request - Query: 'serums for acne-prone skin', Session ID: 067ae169-b524-45e2-9f4a-7899de8b0baf
+INFO:main:Conversation history length: 0
+ERROR:main:Ollama API error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=100)
+INFO:main:Search response generated - Found 12 products
+INFO:main:Response message: 'Great choice! I found 10 products across Face Mask, Toner, Cream / Moisturizer and Serum for you to ...'
+INFO:     127.0.0.1:62539 - "POST /api/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62632 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62659 - "GET /api/products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62659 - "GET /api/categories HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62632 - "GET /api/categories HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [59971]
+INFO:     Stopping reloader process [59968]

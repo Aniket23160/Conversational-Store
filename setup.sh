@@ -31,13 +31,13 @@ print_error() {
 check_files() {
     print_status "Checking for required data files..."
     
-    if [ ! -f "/Users/aniket/assignment/conversational-store/skincare_catalog.xlsx" ]; then
+    if [ ! -f "./skincare_catalog.xlsx" ]; then
         print_error "skincare_catalogue.xlsx not found in current directory"
         print_warning "Please place the Excel file in the project root"
         exit 1
     fi
     
-    if [ ! -f "/Users/aniket/assignment/conversational-store/Additional_info.docx" ]; then
+    if [ ! -f "./Additional_info.docx" ]; then
         print_error "Additional_info.doc not found in current directory"
         print_warning "Please place the Word document in the project root"
         exit 1
@@ -60,9 +60,9 @@ check_ollama() {
     
     # Check if model is available
     print_status "Checking for Llama model..."
-    if ! ollama list | grep -q "phi3.5:latest"; then
-        print_warning "phi3.5:latest model not found. Pulling now..."
-        ollama pull phi3.5:latest
+    if ! ollama list | grep -q "llama3.1:8b "; then
+        print_warning "llama3.1:8b model not found. Pulling now..."
+        ollama pull llama3.1:8b
         if [ $? -eq 0 ]; then
             print_success "Model pulled successfully"
         else
@@ -70,7 +70,7 @@ check_ollama() {
             exit 1
         fi
     else
-        print_success "phi3.5:latest model found"
+        print_success "llama3.1:8b model found"
     fi
 }
 
@@ -122,8 +122,8 @@ setup_backend() {
     fi
     
     # Copy data files to backend directory
-    cp /Users/aniket/assignment/conversational-store/skincare_catalog.xlsx .
-    cp /Users/aniket/assignment/conversational-store/Additional_info.docx .
+    cp ../skincare_catalog.xlsx .
+    cp ../Additional_info.docx .
     
     # Initialize database and RAG
     print_status "Initializing database and RAG system..."
